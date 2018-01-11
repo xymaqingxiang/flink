@@ -16,32 +16,23 @@
  * limitations under the License.
  */
 
-package org.apache.flink.runtime.jobmanager;
+package org.apache.flink.runtime.minicluster;
 
 import org.apache.flink.api.common.JobExecutionResult;
+import org.apache.flink.runtime.client.JobExecutionException;
+import org.apache.flink.runtime.jobgraph.JobGraph;
 
 /**
- * Interface for completion actions once a Flink job has reached
- * a terminal state.
+ * Interface for {@link JobGraph} executors.
  */
-public interface OnCompletionActions {
+public interface JobExecutor {
 
 	/**
-	 * Job finished successfully.
+	 * Run the given job and block until its execution result can be returned.
 	 *
-	 * @param result of the job execution
+	 * @param jobGraph to execute
+	 * @return Execution result of the executed job
+	 * @throws JobExecutionException if the job failed to execute
 	 */
-	void jobFinished(JobExecutionResult result);
-
-	/**
-	 * Job failed with the given exception.
-	 *
-	 * @param cause of the job failure
-	 */
-	void jobFailed(Throwable cause);
-
-	/**
-	 * Job was finished by another JobMaster.
-	 */
-	void jobFinishedByOther();
+	JobExecutionResult executeJobBlocking(final JobGraph jobGraph) throws JobExecutionException, InterruptedException;
 }

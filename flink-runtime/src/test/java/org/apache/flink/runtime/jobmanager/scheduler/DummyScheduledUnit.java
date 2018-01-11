@@ -16,32 +16,19 @@
  * limitations under the License.
  */
 
-package org.apache.flink.runtime.jobmanager;
+package org.apache.flink.runtime.jobmanager.scheduler;
 
-import org.apache.flink.api.common.JobExecutionResult;
+import org.apache.flink.runtime.jobgraph.JobVertexID;
 
 /**
- * Interface for completion actions once a Flink job has reached
- * a terminal state.
+ * Dummy implementation of {@link ScheduledUnit} for testing purposes.
  */
-public interface OnCompletionActions {
-
-	/**
-	 * Job finished successfully.
-	 *
-	 * @param result of the job execution
-	 */
-	void jobFinished(JobExecutionResult result);
-
-	/**
-	 * Job failed with the given exception.
-	 *
-	 * @param cause of the job failure
-	 */
-	void jobFailed(Throwable cause);
-
-	/**
-	 * Job was finished by another JobMaster.
-	 */
-	void jobFinishedByOther();
+public class DummyScheduledUnit extends ScheduledUnit {
+	public DummyScheduledUnit() {
+		super(
+			null,
+			new JobVertexID(),
+			null,
+			null);
+	}
 }

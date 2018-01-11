@@ -1591,6 +1591,17 @@ LOG(x numeric), LOG(base numeric, x numeric)
       <p>Returns the natural logarithm of a specified number of a specified base. If called with one parameter, this function returns the natural logarithm of <code>x</code>. If called with two parameters, this function returns the logarithm of <code>x</code> to the base <code>b</code>. <code>x</code> must be greater than 0. <code>b</code> must be greater than 1.</p>
     </td>
    </tr>
+   
+    <tr>
+      <td>
+{% highlight text %}
+BIN(numeric)
+      {% endhighlight %}
+      </td>
+      <td>
+        <p>Returns a string representation of an integer numeric value in binary format. Returns null if numeric is null. E.g. "4" leads to "100", "12" leads to "1100".</p>
+      </td>
+    </tr>
 
   </tbody>
 </table>
@@ -1835,43 +1846,6 @@ CAST(value AS type)
     </tr>
   </tbody>
 </table>
-
-<!-- Disabled temporarily in favor of composite type support
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th class="text-left" style="width: 40%">Value constructor functions</th>
-      <th class="text-center">Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-  
-    <tr>
-      <td>
-        {% highlight text %}
-ROW (value [, value]* )
-{% endhighlight %}
-      </td>
-      <td>
-        <p>Creates a row from a list of values.</p>
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        {% highlight text %}
-(value [, value]* )
-{% endhighlight %}
-      </td>
-      <td>
-        <p>Creates a row from a list of values.</p>
-      </td>
-    </tr>
-
-  </tbody>
-</table>
--->
 
 <table class="table table-bordered">
   <thead>
@@ -2401,6 +2375,50 @@ map ‘[’ key ‘]’
       </td>
       <td>
         <p>Returns the value specified by a particular key in a map.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th class="text-left" style="width: 40%">Hash functions</th>
+      <th class="text-center">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        {% highlight text %}
+MD5(string)
+{% endhighlight %}
+      </td>
+      <td>
+        <p>Returns the MD5 hash of the string argument as a string of 32 hexadecimal digits; null if <i>string</i> is null.</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        {% highlight text %}
+SHA1(string)
+{% endhighlight %}
+      </td>
+      <td>
+        <p>Returns the SHA-1 hash of the string argument as a string of 40 hexadecimal digits; null if <i>string</i> is null.</p>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        {% highlight text %}
+SHA256(string)
+{% endhighlight %}
+      </td>
+      <td>
+        <p>Returns the SHA-256 hash of the string argument as a string of 64 hexadecimal digits; null if <i>string</i> is null.</p>
       </td>
     </tr>
   </tbody>

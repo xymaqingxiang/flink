@@ -16,19 +16,22 @@
  * limitations under the License.
  */
 
-package org.apache.flink.table.functions.sql
+package org.apache.flink.runtime.minicluster;
 
-import org.apache.calcite.sql.`type`._
-import org.apache.calcite.sql.{SqlFunction, SqlFunctionCategory, SqlKind}
+import java.util.concurrent.CompletableFuture;
 
+/**
+ * Interface to control {@link JobExecutor}.
+ */
+public interface JobExecutorService extends JobExecutor {
 
-object DateTimeSqlFunction {
-  val DATE_FORMAT = new SqlFunction(
-    "DATE_FORMAT",
-    SqlKind.OTHER_FUNCTION,
-    ReturnTypes.explicit(SqlTypeName.VARCHAR),
-    InferTypes.RETURN_TYPE,
-    OperandTypes.sequence("'(TIMESTAMP, FORMAT)'", OperandTypes.DATETIME, OperandTypes.STRING),
-    SqlFunctionCategory.TIMEDATE
-  )
+	/**
+	 * Terminate the given JobExecutorService.
+	 *
+	 * <p>This method can be implemented asynchronously. Therefore it returns a future
+	 * which is completed once the termination has been done.
+	 *
+	 * @return Termination future which can also contain an exception if the termination went wrong
+	 */
+	CompletableFuture<?> terminate();
 }
